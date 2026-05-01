@@ -340,6 +340,29 @@
 
     .contact-card a { color: var(--red); font-weight: 800; }
 
+    .map-hover {
+      position: relative;
+      display: inline-block;
+    }
+
+    .map-preview {
+      position: absolute;
+      bottom: 110%;
+      left: 0;
+      width: 260px;
+      height: 200px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: none;
+      z-index: 30;
+    }
+
+    .map-hover:hover .map-preview {
+      display: block;
+    }
+
     .whatsapp-float {
       position: fixed;
       right: 22px;
@@ -561,6 +584,26 @@
           </div>
           <p><strong>Phone:</strong><br><a href="tel:+447385256542">+44 7385 256542</a></p>
           <p><strong>Email:</strong><br><a href="mailto:topcontinentaleducation@gmail.com">topcontinentaleducation@gmail.com</a></p>
+          <p><strong>Office Address:</strong><br>
+            <span class="map-hover">
+              <a href="https://www.google.com/maps?q=AW%20House%2C%206-8%20Stuart%20Street%2C%20Luton%2C%20LU1%202SJ" target="_blank" rel="noopener" style="color:var(--red);font-weight:700;">
+                AW House<br>
+                6-8 Stuart Street<br>
+                Luton<br>
+                LU1 2SJ<br>
+                United Kingdom
+              </a>
+              <div class="map-preview">
+                <iframe
+                  src="https://www.google.com/maps?q=AW%20House%2C%206-8%20Stuart%20Street%2C%20Luton%2C%20LU1%202SJ&output=embed"
+                  width="100%"
+                  height="100%"
+                  style="border:0;"
+                  loading="lazy">
+                </iframe>
+              </div>
+            </span>
+          </p>
         </div>
         <div class="card">
           <form id="contactForm">
@@ -604,6 +647,9 @@
         </div>
       </div>
     </section>
+
+    
+
   </main>
 
   <footer>
@@ -612,6 +658,24 @@
       <span>Making Education Happen</span>
     </div>
   </footer>
+
+  <!-- Cookie Banner -->
+  <div id="cookieBanner" style="position:fixed;bottom:0;left:0;width:100%;background:#111;color:white;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;z-index:50;">
+    <span>This website uses minimal cookies for basic functionality. By continuing, you agree to our cookie policy.</span>
+    <button onclick="acceptCookies()" style="background:#e60000;color:white;border:none;padding:8px 14px;border-radius:6px;cursor:pointer;">Accept</button>
+  </div>
+
+  <!-- Policy Section -->
+  <section id="policy" style="padding:60px 0;background:#fff;">
+    <div class="container">
+      <h2>Privacy & Cookie Policy</h2>
+      <p>This website does not use tracking cookies or analytics tools. We only use essential functionality to display the website correctly.</p>
+      <p>If you contact us using the form, your information is not stored on this website. Instead, it is used to generate an email which you send manually through your own email provider.</p>
+      <p>We do not collect, store, or process personal data through this website. Any information you choose to send via email is handled securely and only used to respond to your enquiry.</p>
+      <p>By using this website, you acknowledge that no automated data processing takes place and that you voluntarily provide any information via email.</p>
+      <p>For any privacy-related questions, contact: topcontinentaleducation@gmail.com</p>
+    </div>
+  </section>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -640,6 +704,14 @@
 
       window.location.href = `mailto:topcontinentaleducation@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
+  function acceptCookies() {
+      document.getElementById('cookieBanner').style.display = 'none';
+      localStorage.setItem('cookiesAccepted', 'true');
+    }
+
+    if (localStorage.getItem('cookiesAccepted')) {
+      document.getElementById('cookieBanner').style.display = 'none';
+    }
   </script>
 </body>
 </html>
